@@ -1,13 +1,16 @@
+import InputError from "./InputError";
+
 type Props = {
     label: string;
     type: string;
     value: any | null;
     setValue: (value: any) => void;
     required: boolean;
+    error: string;
 }
 
 const Input: React.FC<Props> = (props: Props) => {
-    const { label, type, value, setValue, required } = props;
+    const { label, type, value, setValue, required, error } = props;
 
     if (type === "submit") {
         return (
@@ -29,10 +32,15 @@ const Input: React.FC<Props> = (props: Props) => {
     }
     else {
         return (
-            <div className="w-9/12 max-w-xs">
-                <label className="block text-blue-100 text-sm font-semibold mb-1" htmlFor={label}>{label}{required && "* "}: </label>
-                <input className="w-full shadow appearance-none border rounded w-ful py-1 px-3 text-black leading-tight focus:outline-none focus:shadow-outline" type={type} name={label} id={label} value={value} onInput={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
-            </div>
+            <>
+                <div className="w-9/12 max-w-xs mb-6">
+                    <label className="block text-blue-100 text-sm font-semibold mb-1" htmlFor={label}>{label}{required && "* "}: </label>
+                    <input className="w-full shadow appearance-none border rounded w-ful py-1 px-3 text-black leading-tight focus:outline-none focus:shadow-outline" type={type} name={label} id={label} value={value} onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        console.log(e.target.value);
+                        setValue(e.target.value)}} />
+                </div>
+                {error !== "" && <InputError error={error} />}
+            </>
         )
     };
 };

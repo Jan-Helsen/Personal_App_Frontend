@@ -107,7 +107,7 @@ const createUser = async (userInput: UserInput): Promise<User> => {
 const updateUser = async ({ token, ...userUpdateInput }: UserUpdateInput): Promise<User> => {
     try {
         const response = await fetch(baseURL + "users", {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
