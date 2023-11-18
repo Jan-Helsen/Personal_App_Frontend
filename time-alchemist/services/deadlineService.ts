@@ -43,15 +43,15 @@ const getDeadlineById = async ({ id, token }: DeadlineDelete): Promise<Deadline>
     }
 }
 
-const createDeadline = async ({ name, description, endDate, userId, token }: DeadlineInput): Promise<Deadline> => {
+const createDeadline = async ({ name, subject, description, endDate, userId, token }: DeadlineInput): Promise<Deadline> => {
     try {
-        const response = await fetch(baseURL + "deadlines/createddeadline", {
+        const response = await fetch(baseURL + "deadlines/createdeadline", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ name, description, endDate, userId }),
+            body: JSON.stringify({ name, subject, description, endDate, userId }),
         });
         const data = await response.json();
         if (data.status === "error") throw new Error(data.errorMessage);

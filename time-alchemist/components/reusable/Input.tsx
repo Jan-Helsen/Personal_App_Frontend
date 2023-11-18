@@ -35,9 +35,7 @@ const Input: React.FC<Props> = (props: Props) => {
             <>
                 <div className="w-9/12 max-w-xs mb-6">
                     <label className="block text-blue-100 text-sm font-semibold mb-1" htmlFor={label}>{label}{required && "* "}: </label>
-                    <input className="w-full shadow appearance-none border rounded w-ful py-1 px-3 text-black leading-tight focus:outline-none focus:shadow-outline" type={type} name={label} id={label} value={value} onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        console.log(e.target.value);
-                        setValue(e.target.value)}} />
+                    <input className="w-full shadow appearance-none border rounded w-ful py-1 px-3 text-black leading-tight focus:outline-none focus:shadow-outline" type={type} name={label} id={label} value={value} onInput={(e: React.ChangeEvent<HTMLInputElement>) => setValue(e.target.value)} />
                 </div>
                 {error !== "" && <InputError error={error} />}
             </>

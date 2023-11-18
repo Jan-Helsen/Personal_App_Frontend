@@ -103,7 +103,6 @@ export type HabitUpdateInput = {
     id: number;
     name: string;
     description: string;
-    updatedAt: Date;
     streak: number;
     userId: number;
     token: string;
@@ -117,7 +116,6 @@ export type HabitDelete = {
 export type HabitInput = {
     name: string;
     description: string;
-    updatedAt: Date;
     streak: number;
     userId: number;
     token: string;

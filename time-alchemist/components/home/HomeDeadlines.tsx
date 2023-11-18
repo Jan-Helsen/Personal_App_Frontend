@@ -14,8 +14,8 @@ const HomeDeadlines: React.FC<Props> = (props: Props) => {
             <ul>
                 {deadlines.map((deadline: Deadline) => (
                     <li className="flex justify-between" key={deadline.id}>
-                        <h3>{deadline.subject}</h3>
-                        <p>{deadline.description}</p>
+                        <h3>{deadline.name}</h3>
+                        <p>{deadline.subject}</p>
                         <p>{new Date(deadline.endDate).toLocaleString()}</p>
                     </li>
                 ))}

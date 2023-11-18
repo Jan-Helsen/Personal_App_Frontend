@@ -18,6 +18,9 @@ const Nav: React.FC<Props> = (props: Props) => {
         setStatusMessage({ type: "success", message: "Successfully logged out" });
         setToken("");
         setEmail("");
+        setTimeout(() => {
+            setStatusMessage({ type: "", message: "" });
+        }, 3000);
     }
 
     return (

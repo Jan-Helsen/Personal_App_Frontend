@@ -40,19 +40,12 @@ const Home: React.FC = () => {
         <>
             <Nav token={token} setToken={setToken} setEmail={setEmail} setStatusMessage={setStatusMessage} />
             <main className="flex flex-wrap min-h-screen w-full flex-col content-center items-center justify-center">
-            { (token !== "" && user && user.deadlines.length !== 0 )  ? (
+            { (token !== "" && user && user.deadlines.length !== 0 )  && (
 						<>
 							<Header statusMessage={statusMessage} title="Deadlines" />
-							<Deadlines deadlines={user.deadlines} />
+							<Deadlines deadlines={user.deadlines} userId={user.id} setStatusMessage={setStatusMessage} token={token} />
                         </>
-					) : (
-						<>	
-							<Header statusMessage={statusMessage} title='Deadlines'/>
-							<div className='flex flex-col items-center justify-center min-h-[85%] w-2/4'>
-								<p>ga chillen maatje alles is klaar</p>
-							</div>
-						</>
-				)}
+					)}
             </main>
         </>
     )
