@@ -40,7 +40,7 @@ const Home: React.FC = () => {
         <>
             <Nav token={token} setToken={setToken} setEmail={setEmail} setStatusMessage={setStatusMessage} />
             <main className="flex flex-wrap min-h-screen w-full flex-col content-center items-center justify-center">
-            { (token !== "" && user && user.habits.length !== 0 )  && (
+            { (token !== "" && user )  && (
                         <>
                             <Header statusMessage={statusMessage} title="Habits" />
                             <Habits habits={user.habits} userId={user.id} setStatusMessage={setStatusMessage} token={token} />

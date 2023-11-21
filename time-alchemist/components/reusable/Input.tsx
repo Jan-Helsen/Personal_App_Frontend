@@ -14,12 +14,12 @@ const Input: React.FC<Props> = (props: Props) => {
 
     if (type === "submit") {
         return (
-            <input className='m-2 text-xl bg-blue-500 hover:bg-lime-300 rounded-md p-1.5 duration-125 shadow cursor-pointer' type={type} value={label} />
+            <input className='m-2 text-xl bg-blue-500 hover:bg-blue-600 rounded-md p-1.5 duration-125 shadow cursor-pointer' type={type} value={label} />
         )
     }
     else if (type === "button") {
         return (
-            <button className='m-2 text-xl bg-blue-500 hover:bg-lime-300 rounded-md p-1.5 duration-125 shadow ' type={type} onClick={() => setValue(!value)}>{label}</button>
+            <button className='m-2 text-xl bg-blue-500 hover:bg-blue-600 rounded-md p-1.5 duration-125 shadow ' type={type} onClick={() => setValue(!value)}>{label}</button>
         )
     }
     else if (type === "file") {
