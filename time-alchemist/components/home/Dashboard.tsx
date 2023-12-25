@@ -13,7 +13,7 @@ const Dashboard: React.FC<Props> = (props: Props) => {
     const { user } = props;
 
     return (
-        <div className="min-h-[85%] w-[100%] grid grid-cols-2 grid-rows-3 gap-4 items-center justify-items-center">
+        <div className="min-h-[85%] w-[100%] pb-2 grid grid-cols-2 grid-rows-3 gap-4 items-center justify-items-center">
 			<HomeDeadlines deadlinez={user.deadlines}/>
 			<HomeTodos todoz={user.todos} />
 		    <HomeHabits habitz={user.habits} />

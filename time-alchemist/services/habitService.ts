@@ -1,6 +1,6 @@
 import { Habit, HabitDelete, HabitInput, HabitUpdateInput } from "@/types";
 
-const baseURL = process.env.API_URL || "http://localhost:8000/";
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 const getAllHabits = async ({ token }: { token: string }): Promise<Habit[]> => {
     try {

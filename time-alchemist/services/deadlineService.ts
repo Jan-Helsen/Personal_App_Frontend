@@ -1,6 +1,6 @@
 import { Deadline, DeadlineInput, DeadlineDelete, DeadlineUpdateInput } from "@/types";
 
-const baseURL = process.env.API_URL || "http://localhost:8000/";
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 const getAllDeadlines = async ({ token }: { token: string }): Promise<Deadline[]> => {
     try {

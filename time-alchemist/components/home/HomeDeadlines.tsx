@@ -10,7 +10,8 @@ const HomeDeadlines: React.FC<Props> = (props: Props) => {
     const [deadlines, setDeadlines] = useState<Deadline[]>(props.deadlinez);
 
     return (
-        <div className="col-start-1 row-start-2 shadow-[0px_0px_65px_0px_rgba(0,140,130,0.5)] bg-gradient-to-b from-[#178cc6] to-[#005e59] rounded-3xl w-10/12 h-3/4 p-4">
+        <div className="col-start-1 row-start-2 bg-gradient-to-b from-[#178cc6] to-[#005e59] rounded-3xl w-11/12 h-5/6 p-4">
+            <h2 className="text-2xl pb-2 text-center font-bold text-white">Deadlines</h2>
             <ul>
                 {deadlines.map((deadline: Deadline) => (
                     <li className="flex justify-between" key={deadline.id}>

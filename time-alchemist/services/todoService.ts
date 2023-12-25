@@ -1,6 +1,6 @@
 import { Todo, TodoInput, TodoUpdateInput, TodoDelete } from '@/types';
 
-const baseURL = process.env.API_URL || "http://localhost:8000/";
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 const getAllTodos = async ({ token }: { token: string }): Promise<Todo[]> => {
     try {

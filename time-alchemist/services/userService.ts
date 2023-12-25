@@ -1,6 +1,6 @@
 import { LoginReturn, User, UserDelete, UserEmail, UserInput, UserLogin, UserUpdateInput } from "@/types";
 
-const baseURL = process.env.API_URL || "http://localhost:8000/";
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 const getAllUsers = async ({ token }: { token: string }): Promise<User[]> => {
     try {

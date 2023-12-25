@@ -1,6 +1,6 @@
 import { Excercise, ExcerciseDelete, ExcerciseInput, ExcerciseUpdateInput } from "@/types";
 
-const baseURL = process.env.API_URL || "http://localhost:8000/";
+const baseURL = process.env.NEXT_PUBLIC_API_URL;
 
 const getAllExcercises = async ({ token }: { token: string }): Promise<Excercise[]> => {
     try {
