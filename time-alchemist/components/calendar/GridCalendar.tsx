@@ -1,9 +1,8 @@
-import { useEffect } from "react";
-import { start } from "repl";
+import { Event } from "@/types";
 
 type Props = {
     currentMonth: Date;
-    generateCalendar: () => (number)[];
+    generateCalendar: () => ({day: number, events: Event[]})[];
     daysInMonth: (month: number, year: number) => number;
     firstDayOfMonth: (month: number, year: number) => number;
 };
@@ -39,9 +38,14 @@ const GridCalendar: React.FC<Props> = ({ currentMonth, generateCalendar, daysInM
     };
     return (
         <div className="flex flex-row flex-wrap h-[90%]">
-            {calendar.map((day: number, index: number) => (
+            {calendar.map(({day, events}: {day: number, events: Event[]}, index: number) => (
                 <button className={handleStyle(day, index) ? "flex-col w-[14.28%] min-h-[16.67%] justify-start items-center border border-[#cccccc6e]" : "flex-col w-[14.28%] min-h-[16.67%] justify-start items-center border border-[#cccccc6e] bg-[#66666636]"} key={index} onClick={(event) => handleDayPress(event, day)}>
                     <p className={`text-white ${(day === new Date().getDate() && handleStyle(day, index) && currentMonth.getMonth() === new Date().getMonth()) && "w-6 rounded-full bg-slate-500"} `}>{day}</p>
+                    {events.map((event: Event, index: number) => (
+                        <div className="flex flex-col items-center justify-center" key={index}>
+                            <p className="text-white">{event.title}</p>
+                        </div>
+                    ))}
                 </button>
             ))}
         </div>

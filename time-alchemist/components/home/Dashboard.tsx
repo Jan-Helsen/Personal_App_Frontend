@@ -17,7 +17,7 @@ const Dashboard: React.FC<Props> = (props: Props) => {
 			<HomeDeadlines deadlinez={user.deadlines}/>
 			<HomeTodos todoz={user.todos} />
 		    <HomeHabits habitz={user.habits} />
-			<HomeEvents />
+			<HomeEvents events={user.events} />
 		</div>
     )
 }

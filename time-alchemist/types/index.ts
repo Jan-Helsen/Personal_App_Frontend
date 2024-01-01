@@ -12,6 +12,7 @@ export type User = {
     todos: Todo[];
     habits: Habit[];
     deadlines: Deadline[];
+    events: Event[];
 }
 
 export type UserInput = {
@@ -178,6 +179,44 @@ export type ExcerciseInput = {
     img: string;
     token: string;
 }
+
+export type Event = {
+    id: number;
+    title: string;
+    description: string;
+    startDate: string;
+    endDate: string;
+    color: string;
+    subject: Subject;
+}
+
+export type EventDelete = {
+    id: number;
+    token: string;
+}
+
+export type EventInput = {
+    title: string;
+    description: string;
+    startDate: string;
+    endDate: string;
+    color: string;
+    subject: Subject;
+    token: string;
+}
+
+export type EventUpdateInput = {
+    id: number;
+    title: string;
+    description: string;
+    startDate: string;
+    endDate: string;
+    color: string;
+    subject: Subject;
+    token: string;
+}
+
+export type Subject = "School" | "Work" | "Sports" | "Other"; 
 
 export type StatusMessage = {
     type: string,

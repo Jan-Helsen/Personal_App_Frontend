@@ -1,7 +1,7 @@
 "use client"
 import Nav from '@/components/Nav';
 import { useState, useEffect } from 'react';
-import { StatusMessage, User } from '@/types';
+import { StatusMessage, User, Event } from '@/types';
 import { getUserByEmail } from '@/services/userService';
 import Header from '@/components/reusable/Header';
 import Calendar from '@/components/calendar/Calendar';
@@ -41,7 +41,9 @@ const Home: React.FC = () => {
             <Nav token={token} setToken={setToken} setEmail={setEmail} setStatusMessage={setStatusMessage} />
             <main className="flex min-h-screen w-full flex-col content-center items-center justify-center">
                 <Header statusMessage={statusMessage} title="Calendar" />
-                <Calendar />
+                {user && (
+                    <Calendar user={user} token={token} />
+                )}
             </main>
         </>
     )

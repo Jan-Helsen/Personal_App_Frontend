@@ -26,6 +26,10 @@ const Home = () => {
 		getUser();
 	}, [token])
 
+	useEffect(() => {
+		console.log(user);
+	}, [user])
+
 	const getUser = async () => {
 		if (token !== "" && email !== "") {
 			try {

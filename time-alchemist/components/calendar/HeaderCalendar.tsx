@@ -11,7 +11,13 @@ const HeaderCalendar: React.FC<Props> = ({ currentMonth, setCurrentMonth }: Prop
 
     const prevMonth = (): void => {
         const prevMonth = new Date(currentMonth);
-        prevMonth.setMonth(currentMonth.getMonth() - 1);
+        if (prevMonth.getUTCMonth() === 0) {
+            prevMonth.setFullYear(prevMonth.getFullYear() - 1)
+            prevMonth.setMonth(11);
+        }
+        else {
+            prevMonth.setMonth(prevMonth.getUTCMonth() - 1);
+        }
         setCurrentMonth(prevMonth);
         setMonth(prevMonth.toLocaleString('default', { month: 'long' }));
         setYear(prevMonth.getFullYear());
@@ -19,19 +25,25 @@ const HeaderCalendar: React.FC<Props> = ({ currentMonth, setCurrentMonth }: Prop
     
     const nextMonth = (): void => {
         const nextMonth = new Date(currentMonth);
-        nextMonth.setMonth(currentMonth.getMonth() + 1);
-        setCurrentMonth(nextMonth);
+        if (nextMonth.getUTCMonth() === 11) {
+            nextMonth.setFullYear(nextMonth.getFullYear() + 1)
+            nextMonth.setMonth(0);
+        }
+        else {
+            nextMonth.setMonth(nextMonth.getUTCMonth() + 1);
+        }
+        setCurrentMonth(new Date(nextMonth.toDateString()));
         setMonth(nextMonth.toLocaleString('default', { month: 'long' }));
         setYear(nextMonth.getFullYear());
     };
 
     return (
         <div className="flex flex-row justify-between items-center px-64 min-h-[6%]">
-            <button onClick={prevMonth}>
+            <button className='m-2 text-xl bg-blue-500 hover:bg-blue-600 rounded-md p-1.5 duration-125 shadow w-28 ' onClick={prevMonth}>
                 <p>Prev</p>
             </button>
-            <p>{month} {year}</p>
-            <button onClick={nextMonth}>
+            <p className="text-2xl font-bold">{month} {year}</p>
+            <button className='m-2 text-xl bg-blue-500 hover:bg-blue-600 rounded-md p-1.5 duration-125 shadow w-28 ' onClick={nextMonth}>
                 <p>Next</p>
             </button>
         </div>

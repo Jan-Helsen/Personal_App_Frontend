@@ -11,14 +11,20 @@ const HomeTodos: React.FC<Props> = (props: Props) => {
     return (
         <div className="col-start-1 row-start-3 bg-gradient-to-b from-[#178cc6] to-[#005e59]  bg-opacity-90 rounded-3xl w-11/12 h-5/6 p-4">
             <h2 className="text-2xl pb-2 text-center font-bold text-white">Todos</h2>
-            <ul>
-                {todos.length > 0 && todos.map((todo: Todo) => (
-                    <li className="flex justify-between" key={todo.id}>
-                        <h3>{todo.name}</h3>
-                        <p>{todo.description}</p>
-                    </li>
-                ))}
-            </ul>
+                {todos.length > 0 ? (
+                    <ul>
+                        {todos.map((todo: Todo) => (
+                            <li className="flex justify-between" key={todo.id}>
+                                <h3>{todo.name}</h3>
+                                <p>{todo.description}</p>
+                            </li>
+                    ))}
+                    </ul>
+                    ) : (
+                        <p className="text-center">
+                            No todos yet
+                        </p>
+                )}
         </div>
     )
 }
