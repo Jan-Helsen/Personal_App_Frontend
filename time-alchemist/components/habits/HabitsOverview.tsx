@@ -25,6 +25,7 @@ const HabitsOverview: React.FC<Props> = (props: Props) => {
             try {
                 const habit = await deleteHabit({ id, token })  
                 setTimeout(() => {
+                    // get user oproepen voor te refreshen
                     router.replace("/habits");
                 }, 2000) 
             } 
@@ -37,14 +38,19 @@ const HabitsOverview: React.FC<Props> = (props: Props) => {
     return (
         <div className="w-1/2 p-12">
             <div className="flex flex-col justify-between justify-items-center w-5/6 h-3/4 m-auto p-4 rounded-lg bg-gradient-to-b from-[#178cc6] to-[#005e59]">
-                <ul>
+                <ul className="h-full">
+                    <li className="flex pb-1 justify-between border-b-2 border-[#cccccc65]">
+                        <h3 className="w-[22%]">Name</h3>
+                        <p className="w-[55%]">Description</p>
+                        <p>Streak</p>
+                    </li>
                     {habits.map((habit: Habit) => (
-                        <li className="flex justify-between" key={habit.id}>
-                            <h3>{habit.name}</h3>
-                            <p>{habit.description}</p>
+                        <li className="flex justify-between items-center h-[7%]" key={habit.id}>
+                            <h3 className="w-[22%]">{habit.name}</h3>
+                            <p className="w-[55%]">{habit.description}</p>
                             <p>{habit.streak}</p>
                             { update && (
-                                <Input label="X" type="button" value={update} setValue={() => handleDelete(habit.id)} required={false} error="" />
+                                <button className='m-2 bg-blue-500 hover:bg-blue-600 rounded-md py-1 px-3 duration-125 shadow' onClick={() => handleDelete(habit.id)}>X</button>
                                 )}
                         </li>
                     ))}

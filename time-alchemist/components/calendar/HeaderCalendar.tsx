@@ -11,26 +11,26 @@ const HeaderCalendar: React.FC<Props> = ({ currentMonth, setCurrentMonth }: Prop
 
     const prevMonth = (): void => {
         const prevMonth = new Date(currentMonth);
-        if (prevMonth.getUTCMonth() === 0) {
+        if (prevMonth.getMonth() === 0) {
             prevMonth.setFullYear(prevMonth.getFullYear() - 1)
             prevMonth.setMonth(11);
         }
         else {
-            prevMonth.setMonth(prevMonth.getUTCMonth() - 1);
+            prevMonth.setMonth(prevMonth.getMonth() - 1);
         }
-        setCurrentMonth(prevMonth);
+        setCurrentMonth(new Date(prevMonth.toISOString()));
         setMonth(prevMonth.toLocaleString('default', { month: 'long' }));
         setYear(prevMonth.getFullYear());
     };
     
     const nextMonth = (): void => {
         const nextMonth = new Date(currentMonth);
-        if (nextMonth.getUTCMonth() === 11) {
+        if (nextMonth.getMonth() === 11) {
             nextMonth.setFullYear(nextMonth.getFullYear() + 1)
             nextMonth.setMonth(0);
         }
         else {
-            nextMonth.setMonth(nextMonth.getUTCMonth() + 1);
+            nextMonth.setMonth(nextMonth.getMonth() + 1);
         }
         setCurrentMonth(new Date(nextMonth.toDateString()));
         setMonth(nextMonth.toLocaleString('default', { month: 'long' }));

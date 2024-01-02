@@ -37,16 +37,20 @@ const GridCalendar: React.FC<Props> = ({ currentMonth, generateCalendar, daysInM
         }
     };
     return (
-        <div className="flex flex-row flex-wrap h-[90%]">
+        <div className="flex flex-row flex-wrap h-[91%]">
             {calendar.map(({day, events}: {day: number, events: Event[]}, index: number) => (
-                <button className={handleStyle(day, index) ? "flex-col w-[14.28%] min-h-[16.67%] justify-start items-center border border-[#cccccc6e]" : "flex-col w-[14.28%] min-h-[16.67%] justify-start items-center border border-[#cccccc6e] bg-[#66666636]"} key={index} onClick={(event) => handleDayPress(event, day)}>
-                    <p className={`text-white ${(day === new Date().getDate() && handleStyle(day, index) && currentMonth.getMonth() === new Date().getMonth()) && "w-6 rounded-full bg-slate-500"} `}>{day}</p>
-                    {events.map((event: Event, index: number) => (
-                        <div className="flex flex-col items-center justify-center" key={index}>
-                            <p className="text-white">{event.title}</p>
-                        </div>
-                    ))}
-                </button>
+                <div className={handleStyle(day, index) ? "flex flex-col w-[14.28%] min-h-[16.67%] justify-start items-center border border-[#cccccc6e] hover:cursor-pointer" : "flex flex-col w-[14.28%] min-h-[16.67%] justify-start items-center border border-[#cccccc6e] bg-[#66666636] hover:cursor-pointer"} key={index} onClick={(event) => handleDayPress(event, day)}>
+                    <p className={`text-white text-center pb-1 ${(day === new Date().getDate() && handleStyle(day, index) && currentMonth.getMonth() === new Date().getMonth()) && "w-6 rounded-full bg-slate-500"} `}>{day}</p>
+                    <div className="flex flex-col w-full h-full items-center gap-1">
+                        {events.map((event: Event, index: number) => (
+                            <>
+                            {index < 4 && (
+                                <p key={index} className={`w-[95%] text-sm text-center rounded-lg bg-blue-500 text-white`}>{event.title}</p>
+                            )}
+                            </>
+                        ))}
+                    </div>
+                </div>
             ))}
         </div>
     )

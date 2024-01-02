@@ -14,6 +14,14 @@ const HomeEvents: React.FC<Props> = ({ events }) => {
             <h2 className="text-2xl pb-2 text-center font-bold text-white">Events</h2>
                     {events.length > 0 ? (
                         <ul>
+                            <li>
+                                <h3>Name</h3>
+                                <p>Subject</p>
+                                <div>
+                                    <p>Start Time</p>
+                                    <p>End Time</p>
+                                </div>
+                            </li>
                             {events.map((event: Event) => (
                                 <li className="flex justify-between items-center" key={event.id}>
                                     <h3>{event.title}</h3>

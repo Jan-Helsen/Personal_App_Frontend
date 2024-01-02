@@ -31,7 +31,7 @@ const Calendar: React.FC<Props> = ({ user, token }: Props) => {
             }
             if (totalDays + startingDay <= 42) {
                 endDate.setMonth(currentMonth.getMonth() + 1);
-                endDate.setDate((43-(totalDays + startingDay)));
+                endDate.setDate((44-(totalDays + startingDay)));
             }
             getEvents(startDate, endDate)
         }
@@ -41,7 +41,6 @@ const Calendar: React.FC<Props> = ({ user, token }: Props) => {
     const getEvents = async (startDate: Date, endDate: Date) => {
     try {
         const events = await getEventsByUserIdAndTimeWindow({ userId: user.id, token, startDate: startDate.toISOString(), endDate: endDate.toISOString() });
-        console.log(events);
         setEvents(events);   
     } catch (error) {
         console.log(error);
@@ -70,14 +69,11 @@ const Calendar: React.FC<Props> = ({ user, token }: Props) => {
         const calendar: ({day: number, events: Event[]})[] = [];
 
         for (let i = startingDay; i > 1; i--) {
-            let year = currentMonth.getUTCFullYear();
-            let month = currentMonth.getUTCMonth();
-            if (currentMonth.getUTCMonth() === 0) {
-                year--;
-                month = 11;
-            }
-            const date = new Date( year, month, i - 1);
-            const evnts = events.filter((event) => new Date(event.startDate).getUTCDate() === date.getUTCDate() && new Date(event.startDate).getUTCMonth() === date.getUTCMonth() && new Date(event.startDate).getUTCFullYear() === date.getUTCFullYear());
+            const date = new Date(currentMonth);
+            date.setMonth(date.getMonth() - 1);
+            date.setDate(daysInMonth(date.getMonth(), date.getFullYear()) - i + 2);
+            const evnts = events.filter((event: Event) => date.toLocaleDateString() === new Date(event.startDate).toLocaleDateString());
+
             calendar.push(
                 {day: daysInMonth(
                     currentMonth.getMonth() - 1,
@@ -90,27 +86,22 @@ const Calendar: React.FC<Props> = ({ user, token }: Props) => {
         }
 
         for (let i = 1; i <= totalDays; i++) {
-            const evnts = events.filter((event) => new Date(event.startDate).getUTCDate() === i && new Date(event.startDate).getUTCMonth() === currentMonth.getUTCMonth() && new Date(event.startDate).getUTCFullYear() === currentMonth.getUTCFullYear());
+            const date = new Date(currentMonth);
+            date.setDate(i);
+            const evnts = events.filter((event: Event) => {
+                console.log("Date: ", date.toLocaleDateString());
+                console.log("Event date: ", new Date(event.startDate).toLocaleDateString());
+                return date.toLocaleDateString() === new Date(event.startDate).toLocaleDateString()
+            });
             calendar.push({day: i, events: evnts});
         }
 
         let nextDays = 1;
         while (calendar.length < 42) {
-            let year = currentMonth.getUTCFullYear();
-            let month = currentMonth.getUTCMonth() + 1;
-            if (currentMonth.getUTCMonth() === 11) {
-                year++;
-                month = 0;
-            }
-            const date = new Date(year, month, nextDays + 1);
-            const evnts = events.filter((event, index) => {
-                if (new Date(event.startDate).getUTCFullYear() === date.getUTCFullYear() && (new Date(event.startDate).getUTCMonth() <= date.getUTCMonth() && date.getMonth() <= new Date(event.endDate).getUTCMonth()) && (new Date(event.startDate).getUTCDate() <= date.getUTCDate() && date.getUTCDate() <= new Date(event.endDate).getUTCDate())) {
-                    console.log("startDate: ", index, new Date(event.startDate).getUTCMonth());
-                    console.log("endDate: ", index, new Date(event.endDate).getUTCMonth())
-                    console.log(date.getUTCMonth());
-                }
-                return new Date(event.startDate).getUTCFullYear() === date.getUTCFullYear() && (new Date(event.startDate).getUTCMonth() <= date.getUTCMonth() && date.getMonth() <= new Date(event.endDate).getUTCMonth()) && (new Date(event.startDate).getUTCDate() <= date.getUTCDate() && date.getUTCDate() <= new Date(event.endDate).getUTCDate())
-            });
+            const date = new Date(currentMonth);
+            date.setMonth(date.getMonth() + 1);
+            date.setDate(nextDays);
+            const evnts = events.filter((event: Event) => date.toLocaleDateString() === new Date(event.startDate).toLocaleDateString());
             calendar.push({day: nextDays, events: evnts});
             nextDays++;
         }

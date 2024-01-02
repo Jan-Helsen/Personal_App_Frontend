@@ -20,7 +20,9 @@ const Habits: React.FC<Props> = (props: Props) => {
             <div className="min-h-[85%] w-[100%] flex flex-row">
                 { habits.length === 0 ? (
                     <div className="w-1/2 p-12">
-                        <h2 className="text-3xl text-center">No habits yet</h2>
+                        <div className="flex flex-col justify-between justify-items-center w-5/6 h-3/4 m-auto p-4 rounded-lg bg-gradient-to-b from-[#178cc6] to-[#005e59]">
+                            <h2 className="text-3xl text-center">No habits yet</h2>
+                        </div>
                     </div>
                 ) : (
                     <>
