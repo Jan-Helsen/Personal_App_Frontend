@@ -125,7 +125,7 @@ export type HabitInput = {
 export type Deadline = {
     id: number;
     name: string;
-    subject: string;
+    subject: Subject;
     description: string;
     endDate: string;
     user: User;
@@ -135,7 +135,7 @@ export type Deadline = {
 export type DeadlineUpdateInput = {
     id: number;
     name: string;
-    subject: string;
+    subject: Subject;
     description: string;
     endDate: string;
     userId: number;
@@ -149,7 +149,7 @@ export type DeadlineDelete = {
 
 export type DeadlineInput = {
     name: string;
-    subject: string;
+    subject: Subject;
     description: string;
     endDate: string;
     userId: number;

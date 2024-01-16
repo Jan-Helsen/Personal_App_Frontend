@@ -108,6 +108,7 @@ const Calendar: React.FC<Props> = ({ user, token }: Props) => {
         console.log(calendar);
         return calendar;
     };
+    
     return (
         <>
             <div className="flex flex-col min-h-[85%] w-full justify-between">
